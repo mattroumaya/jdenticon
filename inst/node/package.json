@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "esbuild": "^0.17.14",
     "jdenticon": "^3.2.0",
     "node": "^19.8.1"
   },

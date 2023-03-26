@@ -47,7 +47,7 @@ jdenticon <- function(
   console.log <- processx::run(
     command = "node",
     args = c(
-      "script/index.js",
+      "built/index.js",
       filePath,
       fileName,
       size,
