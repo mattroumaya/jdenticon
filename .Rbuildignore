@@ -1,3 +1,4 @@
 ^jdenticon\.Rproj$
 ^\.Rproj\.user$
 ^inst/node/node_modules$
+^LICENSE\.md$

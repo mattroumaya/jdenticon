@@ -2,19 +2,36 @@
 % Please edit documentation in R/jdenticon.R
 \name{jdenticon}
 \alias{jdenticon}
-\title{Title}
+\title{Create a Jdenticon.}
 \usage{
 jdenticon(
   value = NULL,
   filePath = NULL,
   fileName = NULL,
-  preview = TRUE,
-  size = "100"
+  size = "100",
+  preview = TRUE
 )
 }
 \arguments{
-\item{size}{}
+\item{value}{\code{character} Value to be converted to hexadecimal hash to render Jdenticon.}
+
+\item{filePath}{\code{character} File path to save Jdenticon .png to. If \code{NULL}, defaults to current working directory.}
+
+\item{fileName}{\code{character} File name to save Jdenticon .png as. If \code{NULL}, defaults to \verb{temp_jdenticon_\{value\}}.}
+
+\item{size}{\code{numeric} Size of Jdenticon. Default == 100.}
+
+\item{preview}{\code{boolean} Preview Jdenticon in viewer pane?}
+}
+\value{
+Jdenticon Icon.
 }
 \description{
-Title
+Create a Jdenticon.
+}
+\examples{
+\dontrun{
+jdenticon(value = 'mango')
+}
+
 }
