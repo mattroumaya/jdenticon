@@ -1,2 +1,4 @@
 # jdenticon
-Jdenticon wrapper for R
+
+R wrapper for Node.js Jdenticon library
+
