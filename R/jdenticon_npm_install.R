@@ -9,6 +9,9 @@
 #' jdenticon_npm_install(force = TRUE)
 #' }
 #'
+#' @importFrom yesno yesno
+#' @importFrom processx run
+#'
 #' @export
 jdenticon_npm_install <- function(
     force = FALSE
@@ -29,4 +32,5 @@ jdenticon_npm_install <- function(
       wd = system.file("node", package = "jdenticon")
     )
   }
+  return(invisible(force))
 }

@@ -14,6 +14,11 @@
 #'
 #' @return Jdenticon Icon.
 #'
+#' @importFrom glue glue_collapse
+#' @importFrom fs path_abs
+#' @importFrom processx run
+#' @importFrom magick image_read
+#'
 #'
 #' @export
 jdenticon <- function(
@@ -32,7 +37,7 @@ jdenticon <- function(
     filePath <- fs::path_abs(getwd())
   } else {
     # filePath arg
-    filePath <- fs::path_abs(outfile)
+    filePath <- fs::path_abs(filePath)
   }
 
   if (is.null(fileName)) {
