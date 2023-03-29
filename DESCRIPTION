@@ -17,5 +17,4 @@ Imports:
     processx,
     yesno,
     magick,
-    glue,
-    jsonlite
+    glue

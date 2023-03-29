@@ -6,10 +6,12 @@
 \usage{
 jdenticon(
   value = NULL,
-  filePath = NULL,
-  fileName = NULL,
+  filePath = tempdir(),
+  fileName = glue::glue("jdenticon_{size}_{value}"),
   size = "100",
-  preview = TRUE
+  config = NULL,
+  type = "png",
+  preview = interactive() && Sys.getenv("RSTUDIO") == "1"
 )
 }
 \arguments{
@@ -20,6 +22,10 @@ jdenticon(
 \item{fileName}{\code{character} File name to save Jdenticon .png as. If \code{NULL}, defaults to \verb{temp_jdenticon_\{value\}}.}
 
 \item{size}{\code{numeric} Size of Jdenticon. Default == 100.}
+
+\item{config}{list of jdenticon configuration options (see \href{https://jdenticon.com/js-api/M_jdenticon_toPng.html}{the jdenticon documentation})}
+
+\item{type}{Image type (default 'png', or 'svg')}
 
 \item{preview}{\code{boolean} Preview Jdenticon in viewer pane?}
 }
