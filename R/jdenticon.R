@@ -7,6 +7,7 @@
 #' @param config list of jdenticon configuration options (see [the jdenticon documentation](https://jdenticon.com/js-api/M_jdenticon_toPng.html))
 #' @param type Image type (default 'png', or 'svg')
 #' @param preview `boolean` Preview Jdenticon in viewer pane?
+#' @param return_list `boolean` Return full list object with all settings?
 #'
 #'
 #' @examples
@@ -14,12 +15,13 @@
 #' jdenticon(value = 'mango')
 #' }
 #'
-#' @return Jdenticon Icon.
+#' @return Path to Jdenticon icon file, or (if `return_list` is true) a list with all parameters (including path).
 #'
 #' @importFrom glue glue_collapse
 #' @importFrom fs path_abs
 #' @importFrom processx run
 #' @importFrom magick image_read
+#' @importFrom jsonlite fromJSON
 #'
 #'
 #' @export
@@ -30,7 +32,8 @@ jdenticon <- function(
     size = "100",
     config = NULL,
     type = 'png',
-    preview = interactive() && Sys.getenv("RSTUDIO") == "1")
+    preview = interactive() && Sys.getenv("RSTUDIO") == "1",
+    return_list = FALSE)
   {
 
   if(!(type %in% c('png','svg')) )
@@ -66,12 +69,20 @@ jdenticon <- function(
     wd = system.file("node", package = "jdenticon")
   )[["stdout"]]
 
+  params_list = jsonlite::fromJSON(console.log)
+
+  if(!file.exists(params_list$fullPath))
+    stop('Image was not created.')
+
   if (preview) {
-    print(magick::image_read(glue::glue('{filePath}/{fileName}.{type}')))
+      glue::glue('{filePath}/{fileName}.{type}') |>
+        magick::image_read() |>
+        print()
   }
 
-  return(
-    glue::glue_collapse(console.log, sep = "\n")
-  )
-
+  if(isTRUE(return_list)){
+    return(params_list)
+  }else{
+    return(params_list$fullPath)
+  }
 }

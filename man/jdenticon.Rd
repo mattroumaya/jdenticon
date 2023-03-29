@@ -11,7 +11,8 @@ jdenticon(
   size = "100",
   config = NULL,
   type = "png",
-  preview = interactive() && Sys.getenv("RSTUDIO") == "1"
+  preview = interactive() && Sys.getenv("RSTUDIO") == "1",
+  return_list = FALSE
 )
 }
 \arguments{
@@ -28,9 +29,11 @@ jdenticon(
 \item{type}{Image type (default 'png', or 'svg')}
 
 \item{preview}{\code{boolean} Preview Jdenticon in viewer pane?}
+
+\item{return_list}{\code{boolean} Return full list object with all settings?}
 }
 \value{
-Jdenticon Icon.
+Path to Jdenticon icon file, or (if \code{return_list} is true) a list with all parameters (including path).
 }
 \description{
 Create a Jdenticon.
