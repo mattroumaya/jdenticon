@@ -36,6 +36,13 @@ jdenticon <- function(
     return_list = FALSE)
   {
 
+  tryCatch(
+    processx::run('node',args = '-v'),
+    error = \(cond){
+      print(cond)
+      stop('There was a problem running node. Is it installed and on the path?', call. = FALSE)
+    })
+
   if(!(type %in% c('png','svg')) )
     stop('Argument type must be one of "png" or "svg".')
 
@@ -56,18 +63,24 @@ jdenticon <- function(
 
   config_json <- jsonlite::toJSON(config, auto_unbox = TRUE) |> as.character()
 
-  console.log <- processx::run(
-    command = "node",
-    args = c(
-      "built/index.js",
-      filePath,
-      fileName,
-      size,
-      value,
-      config_json,
-      type),
-    wd = system.file("node", package = "jdenticon")
-  )[["stdout"]]
+  tryCatch({
+    console.log <- processx::run(
+      command = "node",
+      args = c(
+        "built/index.js",
+        filePath,
+        fileName,
+        size,
+        value,
+        config_json,
+        type),
+      wd = system.file("node", package = "jdenticon")
+      )[["stdout"]]
+  },
+  error = \(cond){
+    print(cond)
+    stop('There was a problem running jdenticon. Have you run jdenticon_npm_install()?', call. = FALSE)
+  })
 
   params_list = jsonlite::fromJSON(console.log)
 
