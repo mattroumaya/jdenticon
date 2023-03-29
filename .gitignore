@@ -1,2 +1,3 @@
 .Rproj.user
-^inst/node/node_modules$
+inst/node/node_modules/
+.DS_Store
