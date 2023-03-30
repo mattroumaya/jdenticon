@@ -1,10 +1,15 @@
 Package: jdenticon
 Title: R Wrapper for the Node.js Jdenticon Library
-Version: 0.0.1
+Version: 0.0.2
 Authors@R: 
-    person(given = "Matt", family = "Roumaya", email = "matthewroumaya@gmail.com", role = c("aut", "cre"),
-           comment = c(ORCID = "0000-0002-8009-2771"))
-Description: R Wrapper for the Node.js Jdenticon Library. Uses esbuild bundling to reduce user dependencies on node and npm. v0.0.1 includes very basic functionality only.
+    c(person(given = "Matt", family = "Roumaya", email = "matthewroumaya@gmail.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-8009-2771")),
+      person(given = c("Richard","D."),
+           family = "Morey",
+           role = "ctb",
+           comment = c(ORCID = "0000-0001-9220-3179"))
+      )
+Description: R Wrapper for the Node.js Jdenticon Library. Uses esbuild bundling to reduce user dependencies on node and npm. 
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -17,4 +22,5 @@ Imports:
     processx,
     yesno,
     magick,
-    glue
+    glue,
+    jsonlite

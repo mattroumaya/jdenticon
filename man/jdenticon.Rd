@@ -6,10 +6,13 @@
 \usage{
 jdenticon(
   value = NULL,
-  filePath = NULL,
-  fileName = NULL,
+  filePath = tempdir(),
+  fileName = glue::glue("jdenticon_{size}_{value}"),
   size = "100",
-  preview = TRUE
+  config = NULL,
+  type = "png",
+  preview = interactive() && Sys.getenv("RSTUDIO") == "1",
+  return_list = FALSE
 )
 }
 \arguments{
@@ -21,10 +24,16 @@ jdenticon(
 
 \item{size}{\code{numeric} Size of Jdenticon. Default == 100.}
 
+\item{config}{list of jdenticon configuration options (see \href{https://jdenticon.com/js-api/M_jdenticon_toPng.html}{the jdenticon documentation})}
+
+\item{type}{Image type (default 'png', or 'svg')}
+
 \item{preview}{\code{boolean} Preview Jdenticon in viewer pane?}
+
+\item{return_list}{\code{boolean} Return full list object with all settings?}
 }
 \value{
-Jdenticon Icon.
+Path to Jdenticon icon file, or (if \code{return_list} is true) a list with all parameters (including path).
 }
 \description{
 Create a Jdenticon.

@@ -2,24 +2,30 @@
 const jdenticon = require("jdenticon");
 const fs = require("fs");
 
+
 // args
-const filePath = process.argv[2];
-const fileName = process.argv[3];
-const size = Number(process.argv[4]);
-const value = process.argv[5];
+const params = {
+  filePath: process.argv[2],
+  fileName: process.argv[3],
+  size:     Number(process.argv[4]),
+  value:    process.argv[5],
+  config:   JSON.parse(process.argv[6]),
+  type:     process.argv[7]
+}
+
+params.fullPath = `${params.filePath}/${params.fileName}.${params.type}`;
+var img = null;
 
 // create jdenticon
-const png = jdenticon.toPng(value, size);
+if(params.type === 'svg'){
+  img = jdenticon.toSvg(params.value, params.size, params.config);
+}else{
+  img = jdenticon.toPng(params.value, params.size, params.config);
+}
 
-// log
-console.log(`--- Creating jdenticon using value: ${value}`);
-console.log(`--- Creating jdenticon using size: ${size}`);
-console.log(`--- Saving jdenticon to path: ${filePath}`);
 
 // save
-fs.writeFileSync(`${filePath}/${fileName}.png`, png);
+fs.writeFileSync(params.fullPath, img);
 
-
-
-
-
+// log
+console.log(JSON.stringify(params, null, "  "));
