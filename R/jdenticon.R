@@ -1,6 +1,7 @@
 #' Create a Jdenticon.
 #'
-#' @param value `character` Value to be converted to hexadecimal hash to render Jdenticon.
+#' @param value `character` Value to be converted to hexadecimal hash to render Jdenticon. Cannot contain characters that are reserved for filepaths:
+#'
 #' @param filePath `character` File path to save Jdenticon .png to. If `NULL`, defaults to current working directory.
 #' @param fileName `character` File name to save Jdenticon .png as. If `NULL`, defaults to `temp_jdenticon_{value}`.
 #' @param size `numeric` Size of Jdenticon. Default == 100.
@@ -17,7 +18,7 @@
 #'
 #' @return Path to Jdenticon icon file, or (if `return_list` is true) a list with all parameters (including path).
 #'
-#' @importFrom glue glue_collapse
+#' @importFrom glue glue
 #' @importFrom fs path_abs
 #' @importFrom processx run
 #' @importFrom magick image_read
@@ -48,6 +49,12 @@ jdenticon <- function(
 
   if (is.null(value)) {
     value <- rawToChar(as.raw(sample(c(65:90,97:122), 9, replace=TRUE)))
+  } else {
+    origValue <- value
+    value <- gsub("[^[:alnum:]]+", "_", iconv(value, from = "ascii", "utf-8"))
+    if (origValue != value) {
+      warning(glue::glue("The value `{origValue}` contains at least one illegal character. Value used has been modified to `{value}`."))
+    }
   }
 
   if (is.null(filePath)) {

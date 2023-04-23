@@ -16,7 +16,7 @@ jdenticon(
 )
 }
 \arguments{
-\item{value}{\code{character} Value to be converted to hexadecimal hash to render Jdenticon.}
+\item{value}{\code{character} Value to be converted to hexadecimal hash to render Jdenticon. Cannot contain characters that are reserved for filepaths:}
 
 \item{filePath}{\code{character} File path to save Jdenticon .png to. If \code{NULL}, defaults to current working directory.}
 
