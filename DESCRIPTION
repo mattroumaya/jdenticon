@@ -1,6 +1,6 @@
 Package: jdenticon
-Title: R Wrapper for the Node.js Jdenticon Library
-Version: 0.1.0
+Title: A Wrapper for the Node.js 'Jdenticon' Library
+Version: 0.1.1
 Authors@R: 
     c(person(given = "Matt", 
              family = "Roumaya", 
@@ -12,7 +12,7 @@ Authors@R:
            role = "ctb",
            comment = c(ORCID = "0000-0001-9220-3179"))
       )
-Description: R Wrapper for the Node.js Jdenticon Library. Uses esbuild bundling to reduce user dependencies on Node.js and npm. 
+Description: A Wrapper for the Node.js 'Jdenticon' <https://jdenticon.com/> Library. Uses 'esbuild' <https://esbuild.github.io/> to reduce user dependencies.  
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

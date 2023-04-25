@@ -3,3 +3,4 @@
 ^inst/node/node_modules$
 ^LICENSE\.md$
 ^cran-comments\.md$
+^CRAN-SUBMISSION$
